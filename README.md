@@ -53,6 +53,7 @@
    ```bash
    git clone https://github.com/tanphn/cs317_lab1.git
    cd cs317_lab1
+
 2. **Cài đặt thư viện cần thiết**
    ```bash
    pip install -r requirements.txt
@@ -71,7 +72,7 @@ File requirements.txt bao gồm các thư viện chính như:
    ```bash
    dvc init
 
-4. **Chạy Pineline**
+4. **Chạy Pineline** \n
 4.1 **Chạy Pineline với DVC**
 Các pipeline huấn luyện và đánh giá có thể được thực thi thông qua DVC. Bạn có thể sử dụng DVC để chạy pipeline đã được cấu hình sẵn được lưu trong file dvc.yaml
    ```bash
@@ -79,7 +80,7 @@ Các pipeline huấn luyện và đánh giá có thể được thực thi thôn
 Pipeline được định nghĩa trong dvc.yaml và điều phối bởi ClearML. Các bước chính bao gồm: preprocess, train, và evaluate:
 - **Preprocess**: Xử lý dữ liệu từ data/raw và lưu vào data/processed.
 - **Train**: Huấn luyện mô hình ResNet18 với 10 epoch, sử dụng Optuna để tối ưu lr và batch_size.
-- **Evaluate**: Đánh giá mô hình trên tập validation và lưu metric vào metrics/eval.json.
+- **Evaluate**: Đánh giá mô hình trên tập validation và lưu metric vào metrics/eval.json.\n
 4.2 **Chạy Pineline với ClearML**
 Chạy pipeline bằng lệnh:
    ```bash
