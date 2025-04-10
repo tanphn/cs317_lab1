@@ -74,9 +74,9 @@
 
 ### 4. **Chạy Pineline** 
 #### 4.1 **Chạy Pineline với DVC**
-  Các pipeline huấn luyện và đánh giá có thể được thực thi thông qua DVC. Bạn có thể sử dụng DVC để chạy pipeline đã được cấu hình sẵn được lưu trong file dvc.yaml
-     ```bash
-     dvc repro
+Các pipeline huấn luyện và đánh giá có thể được thực thi thông qua DVC. Bạn có thể sử dụng DVC để chạy pipeline đã được cấu hình sẵn được lưu trong file dvc.yaml
+    ```bash
+    dvc repro
   Pipeline được định nghĩa trong dvc.yaml và điều phối bởi ClearML. Các bước chính bao gồm: preprocess, train, và evaluate:
   - **Preprocess**: Xử lý dữ liệu từ data/raw và lưu vào data/processed.
   - **Train**: Huấn luyện mô hình ResNet18 với 10 epoch, sử dụng Optuna để tối ưu lr và batch_size.
