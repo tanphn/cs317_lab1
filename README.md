@@ -43,3 +43,13 @@ mlops_lab1/
 ├── dvc.yaml                 # DVC pipeline định nghĩa stages: preprocess → train → evaluate
 ├── clearml.conf             # Cấu hình ClearML client
 ├── requirements.txt         # Thư viện (torch, torchvision, optuna, clearml, neptune, etc.)
+
+
+
+## Cài Đặt Môi Trường
+
+1. **Clone repository** về máy:
+
+   ```bash
+   git clone https://github.com/tanphn/cs317_lab1.git
+   cd cs317_lab1
