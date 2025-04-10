@@ -48,53 +48,53 @@
 
 ## Cài Đặt Môi Trường
 
-1. **Clone repository** về máy:
+### 1. **Clone repository** về máy:
 
-   ```bash
-   git clone https://github.com/tanphn/cs317_lab1.git
-   cd cs317_lab1
+     ```bash
+     git clone https://github.com/tanphn/cs317_lab1.git
+     cd cs317_lab1
 
-2. **Cài đặt thư viện cần thiết**
-   ```bash
-   pip install -r requirements.txt
-File requirements.txt bao gồm các thư viện chính như:
+### 2. **Cài đặt thư viện cần thiết**
+     ```bash
+     pip install -r requirements.txt
+  File requirements.txt bao gồm các thư viện chính như:
+  
+  - **torch**: Thư viện học sâu PyTorch.
+  - **torchvision**: Hỗ trợ xử lý hình ảnh với PyTorch.
+  - **optuna**: Tối ưu hóa hyperparameters.
+  - **clearml**: Quản lý pipeline và thí nghiệm.
+  - **neptune**: Log metric và mô hình.
+  - **dvc**: Quản lý dữ liệu.
+  - **scikit-learn**: Đánh giá mô hình.
+  - **mlflow, fastapi, uvicorn, prometheus-client, pytest**: Các công cụ bổ sung cho MLOps.
 
-- **torch**: Thư viện học sâu PyTorch.
-- **torchvision**: Hỗ trợ xử lý hình ảnh với PyTorch.
-- **optuna**: Tối ưu hóa hyperparameters.
-- **clearml**: Quản lý pipeline và thí nghiệm.
-- **neptune**: Log metric và mô hình.
-- **dvc**: Quản lý dữ liệu.
-- **scikit-learn**: Đánh giá mô hình.
-- **mlflow, fastapi, uvicorn, prometheus-client, pytest**: Các công cụ bổ sung cho MLOps.
+### 3. **Cấu hình dvc**
+       ```bash
+       dvc init
 
-3. **Cấu hình dvc**
-   ```bash
-   dvc init
-
-4. **Chạy Pineline** \n
-4.1 **Chạy Pineline với DVC**
-Các pipeline huấn luyện và đánh giá có thể được thực thi thông qua DVC. Bạn có thể sử dụng DVC để chạy pipeline đã được cấu hình sẵn được lưu trong file dvc.yaml
-   ```bash
-   dvc repro
-Pipeline được định nghĩa trong dvc.yaml và điều phối bởi ClearML. Các bước chính bao gồm: preprocess, train, và evaluate:
-- **Preprocess**: Xử lý dữ liệu từ data/raw và lưu vào data/processed.
-- **Train**: Huấn luyện mô hình ResNet18 với 10 epoch, sử dụng Optuna để tối ưu lr và batch_size.
-- **Evaluate**: Đánh giá mô hình trên tập validation và lưu metric vào metrics/eval.json.\n
-4.2 **Chạy Pineline với ClearML**
-Chạy pipeline bằng lệnh:
-   ```bash
-   python clearml_pipeline.py
-   
-5. **Theo dõi kết quả**
-- **ClearML**:  
-  Sau khi chạy pipeline, bạn sẽ thấy link ClearML results page trong log (ví dụ: `https://app.clear.ml/projects/...`).  
-  Truy cập link để xem trạng thái pipeline, log, và artifact (như checkpoint mô hình, file metric).  
-
-- **Neptune**:  
-  Truy cập `app.neptune.ai` để xem metric (loss, accuracy), checkpoint mô hình, và hyperparameters.  
-
-- **DVC**:  
-  Dữ liệu được quản lý trong thư mục `data/processed`. Dùng lệnh sau để kéo dữ liệu mới nhất nếu cần:  
-  ```bash
-  dvc pull
+### 4. **Chạy Pineline** 
+#### 4.1 **Chạy Pineline với DVC**
+  Các pipeline huấn luyện và đánh giá có thể được thực thi thông qua DVC. Bạn có thể sử dụng DVC để chạy pipeline đã được cấu hình sẵn được lưu trong file dvc.yaml
+     ```bash
+     dvc repro
+  Pipeline được định nghĩa trong dvc.yaml và điều phối bởi ClearML. Các bước chính bao gồm: preprocess, train, và evaluate:
+  - **Preprocess**: Xử lý dữ liệu từ data/raw và lưu vào data/processed.
+  - **Train**: Huấn luyện mô hình ResNet18 với 10 epoch, sử dụng Optuna để tối ưu lr và batch_size.
+  - **Evaluate**: Đánh giá mô hình trên tập validation và lưu metric vào metrics/eval.json.\n
+#### 4.2 **Chạy Pineline với ClearML**
+  Chạy pipeline bằng lệnh:
+     ```bash
+     python clearml_pipeline.py
+     
+### 5. **Theo dõi kết quả**
+  - **ClearML**:  
+    Sau khi chạy pipeline, bạn sẽ thấy link ClearML results page trong log (ví dụ: `https://app.clear.ml/projects/...`).  
+    Truy cập link để xem trạng thái pipeline, log, và artifact (như checkpoint mô hình, file metric).  
+  
+  - **Neptune**:  
+    Truy cập `app.neptune.ai` để xem metric (loss, accuracy), checkpoint mô hình, và hyperparameters.  
+  
+  - **DVC**:  
+    Dữ liệu được quản lý trong thư mục `data/processed`. Dùng lệnh sau để kéo dữ liệu mới nhất nếu cần:  
+    ```bash
+    dvc pull
