@@ -22,27 +22,28 @@
 ## Cấu Trúc Pinelined
 
 mlops_lab1/
-├── data/
-│   ├── raw/                  # Dữ liệu gốc (DVC quản lý)
-│   └── processed/            # Dữ liệu sau tiền xử lý (DVC quản lý)
 │
-├── src/                      # Source code chính (Python scripts)
-│   ├── data_preprocessing.py   # Tiền xử lý dữ liệu (DVC stage)
-│   ├── train.py                # Huấn luyện mô hình
-│   │                            ├── Optuna: tuning
-│   │                            ├── ClearML: orchestration & tracking
-│   │                            └── Neptune: log metrics, model
-│   ├── evaluate.py             # Đánh giá mô hình
-│   └── tune.py                 # Có thể chạy tuning riêng với Optuna
+├── data/                           # Dữ liệu
+│   ├── raw/                        # 📦 Dữ liệu gốc (DVC quản lý)
+│   └── processed/                  # 🧹 Dữ liệu đã tiền xử lý (DVC quản lý)
+│
+├── src/                            # 💻 Mã nguồn chính
+│   ├── data_preprocessing.py       # 🧼 Tiền xử lý dữ liệu (Stage: preprocess)
+│   ├── train.py                    # 🧠 Huấn luyện mô hình
+│   │                                ├── 🎯 Optuna: Hyperparameter tuning
+│   │                                ├── 🛠️ ClearML: Orchestration & tracking
+│   │                                └── 📊 Neptune: Logging model & metrics
+│   ├── evaluate.py                 # 📈 Đánh giá mô hình (Stage: evaluate)
+│   └── tune.py                     # 🔁 Tuning riêng biệt với Optuna
 │
 ├── models/
-│   └── checkpoints/         # Lưu checkpoint (log lên Neptune)
+│   └── checkpoints/               # 💾 Checkpoints mô hình (log lên Neptune)
 │
-├── metrics/                 # Lưu file JSON/CSV đánh giá (có thể DVC quản lý)
+├── metrics/                       # 📄 File đánh giá (.json/.csv - DVC quản lý)
 │
-├── dvc.yaml                 # DVC pipeline định nghĩa stages: preprocess → train → evaluate
-├── clearml.conf             # Cấu hình ClearML client
-├── requirements.txt         # Thư viện (torch, torchvision, optuna, clearml, neptune, etc.)
+├── dvc.yaml                       # ⚙️ DVC pipeline: preprocess → train → evaluate
+├── clearml.conf                   # 🛠️ Cấu hình ClearML client
+├── requirements.txt               # 📦 Danh sách thư viện (torch, optuna, ...)
 
 
 
@@ -71,7 +72,8 @@ File requirements.txt bao gồm các thư viện chính như:
    ```bash
    dvc init
 
-4. **Chạy Pineline với DVC**
+4. **Chạy Pineline**
+4.1 **Chạy Pineline với DVC**
 Các pipeline huấn luyện và đánh giá có thể được thực thi thông qua DVC. Bạn có thể sử dụng DVC để chạy pipeline đã được cấu hình sẵn được lưu trong file dvc.yaml
    ```bash
    dvc repro
@@ -79,7 +81,12 @@ Pipeline được định nghĩa trong dvc.yaml và điều phối bởi ClearML
 - **Preprocess**: Xử lý dữ liệu từ data/raw và lưu vào data/processed.
 - **Train**: Huấn luyện mô hình ResNet18 với 10 epoch, sử dụng Optuna để tối ưu lr và batch_size.
 - **Evaluate**: Đánh giá mô hình trên tập validation và lưu metric vào metrics/eval.json.
-### 5. Theo dõi kết quả
+4.2 **Chạy Pineline với ClearML**
+Chạy pipeline bằng lệnh:
+   ```bash
+   python clearml_pipeline.py
+   
+5. **Theo dõi kết quả**
 - **ClearML**:  
   Sau khi chạy pipeline, bạn sẽ thấy link ClearML results page trong log (ví dụ: `https://app.clear.ml/projects/...`).  
   Truy cập link để xem trạng thái pipeline, log, và artifact (như checkpoint mô hình, file metric).  
