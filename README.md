@@ -13,7 +13,23 @@
 - **DVC**: Quản lý dữ liệu và giúp version hóa dữ liệu huấn luyện.
 - **PyTorch & Torchvision**: Dùng để xây dựng và huấn luyện mô hình học sâu.
 - **Scikit-learn**: Dùng để đánh giá mô hình và tính toán các chỉ số như accuracy.
-
+## 📁 Cấu Trúc Pipeline
+- `data/`
+  - `raw/`: 📦 Dữ liệu gốc (DVC quản lý)
+  - `processed/`: 🧹 Dữ liệu đã xử lý (DVC quản lý)
+- `src/` — 💻 Mã nguồn chính:
+  - `data_preprocessing.py`: 🌸 Tiền xử lý dữ liệu (Stage: preprocess)
+  - `train.py`: 🧠 Huấn luyện mô hình
+    - 🎯 Optuna: Tối ưu siêu tham số
+    - 🛠️ ClearML: Theo dõi và orchestration
+    - 📊 Neptune: Log mô hình và metrics
+  - `evaluate.py`: 📈 Đánh giá mô hình (Stage: evaluate)
+  - `tune.py`: 🔁 Chạy tuning riêng
+- `models/checkpoints/`: 💾 Lưu checkpoints
+- `metrics/`: 📄 File đánh giá (.json/.csv — DVC quản lý)
+- `dvc.yaml`: ⚙️ Định nghĩa pipeline (preprocess → train → evaluate)
+- `clearml.conf`: 🔧 Cấu hình ClearML
+- `requirements.txt`: 📦 Thư viện cần thiết
 ## Cài Đặt Môi Trường
 1. **Clone repository** về máy:
    ```bash
