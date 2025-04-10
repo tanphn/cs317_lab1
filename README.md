@@ -69,7 +69,6 @@
   - **mlflow, fastapi, uvicorn, prometheus-client, pytest**: Các công cụ bổ sung cho MLOps.
 
 ### 3. **Cấu hình dvc**
-       ```bash
        dvc init
 
 ### 4. **Chạy Pineline** 
