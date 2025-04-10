@@ -66,3 +66,13 @@ File requirements.txt bao gồm các thư viện chính như:
 - **dvc**: Quản lý dữ liệu.
 - **scikit-learn**: Đánh giá mô hình.
 - **mlflow, fastapi, uvicorn, prometheus-client, pytest**: Các công cụ bổ sung cho MLOps.
+3. **Cấu hình dvc**
+  ```bash
+   dvc init
+Theo dõi dữ liệu với:
+  ```bash
+   dvc add data/raw
+
+teh doi
+3. **Cấu hình dvc**
+
