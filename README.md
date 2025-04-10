@@ -75,4 +75,19 @@ File requirements.txt bao gồm các thư viện chính như:
 Các pipeline huấn luyện và đánh giá có thể được thực thi thông qua DVC. Bạn có thể sử dụng DVC để chạy pipeline đã được cấu hình sẵn được lưu trong file dvc.yaml
    ```bash
    dvc repro
-File requirements.txt bao gồm các thư viện chính như:
+Pipeline được định nghĩa trong dvc.yaml và điều phối bởi ClearML. Các bước chính bao gồm: preprocess, train, và evaluate:
+- **Preprocess**: Xử lý dữ liệu từ data/raw và lưu vào data/processed.
+- **Train**: Huấn luyện mô hình ResNet18 với 10 epoch, sử dụng Optuna để tối ưu lr và batch_size.
+- **Evaluate**: Đánh giá mô hình trên tập validation và lưu metric vào metrics/eval.json.
+### 5. Theo dõi kết quả
+- **ClearML**:  
+  Sau khi chạy pipeline, bạn sẽ thấy link ClearML results page trong log (ví dụ: `https://app.clear.ml/projects/...`).  
+  Truy cập link để xem trạng thái pipeline, log, và artifact (như checkpoint mô hình, file metric).  
+
+- **Neptune**:  
+  Truy cập `app.neptune.ai` để xem metric (loss, accuracy), checkpoint mô hình, và hyperparameters.  
+
+- **DVC**:  
+  Dữ liệu được quản lý trong thư mục `data/processed`. Dùng lệnh sau để kéo dữ liệu mới nhất nếu cần:  
+  ```bash
+  dvc pull
