@@ -19,29 +19,30 @@
 - **PyTorch & Torchvision**: Dùng để xây dựng và huấn luyện mô hình học sâu.
 - **Scikit-learn**: Dùng để đánh giá mô hình và tính toán các chỉ số như accuracy.
 
-## 📦 Cấu Trúc Pipeline
+## 📁 Cấu Trúc Pipeline
 
-mlops_lab1/
-├── data/                 
-│   ├── raw/              # 📦 Dữ liệu gốc (DVC quản lý)
-│   └── processed/        # 🧹 Dữ liệu đã xử lý (DVC quản lý)
-│
-├── src/                 
-│   ├── data_preprocessing.py   # 🌸 Tiền xử lý dữ liệu (Stage: preprocess)
-│   ├── train.py                # 🧠 Huấn luyện mô hình
-│   │                            ├── 🎯 Optuna: Hyperparameter tuning
-│   │                            ├── 🛠️ ClearML: orchestration & tracking
-│   │                            └── 📊 Neptune: log model & metrics
-│   ├── evaluate.py             # 📈 Đánh giá mô hình (Stage: evaluate)
-│   └── tune.py                 # 🔁 Tuning riêng biệt với Optuna
-│
-├── models/
-│   └── checkpoints/     # 💾 Lưu checkpoints (log lên Neptune)
-│
-├── metrics/             # 📄 File đánh giá (.json/.csv — DVC quản lý)
-├── dvc.yaml             # ⚙️ DVC pipeline: preprocess → train → evaluate
-├── clearml.conf         # 🔧 Cấu hình ClearML
-├── requirements.txt     # 📦 Danh sách thư viện (torch, optuna, ...)
+- `data/`
+  - `raw/`: 📦 Dữ liệu gốc (DVC quản lý)
+  - `processed/`: 🧹 Dữ liệu đã xử lý (DVC quản lý)
+
+- `src/` — 💻 Mã nguồn chính:
+  - `data_preprocessing.py`: 🌸 Tiền xử lý dữ liệu (Stage: preprocess)
+  - `train.py`: 🧠 Huấn luyện mô hình
+    - 🎯 Optuna: Tối ưu siêu tham số
+    - 🛠️ ClearML: Theo dõi và orchestration
+    - 📊 Neptune: Log mô hình và metrics
+  - `evaluate.py`: 📈 Đánh giá mô hình (Stage: evaluate)
+  - `tune.py`: 🔁 Chạy tuning riêng
+
+- `models/checkpoints/`: 💾 Lưu checkpoints
+
+- `metrics/`: 📄 File đánh giá (.json/.csv — DVC quản lý)
+
+- `dvc.yaml`: ⚙️ Định nghĩa pipeline (preprocess → train → evaluate)
+
+- `clearml.conf`: 🔧 Cấu hình ClearML
+
+- `requirements.txt`: 📦 Thư viện cần thiết
 
 
 
