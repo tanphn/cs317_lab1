@@ -27,62 +27,13 @@
 
 - `src/` — 💻 Mã nguồn chính:
   - `data_preprocessing.py`: 🌸 Tiền xử lý dữ liệu (Stage: preprocess)
-  - `train.py`: 🧠 Huấn luyện mô hình
-    - 🎯 Optuna: Tối ưu siêu tham số
-    - 🛠️ ClearML: Theo dõi và orchestration
-    - 📊 Neptune: Log mô hình và metrics
-  - `evaluate.py`: 📈 Đánh giá mô hình (Stage: evaluate)
-  - `tune.py`: 🔁 Chạy tuning riêng
-
-- `models/checkpoints/`: 💾 Lưu checkpoints
-
-- `metrics/`: 📄 File đánh giá (.json/.csv — DVC quản lý)
-
-- `dvc.yaml`: ⚙️ Định nghĩa pipeline (preprocess → train → evaluate)
-
-- `clearml.conf`: 🔧 Cấu hình ClearML
-
-- `requirements.txt`: 📦 Thư viện cần thiết
-
-
-
-## Cài Đặt Môi Trường
-
-### 1. **Clone repository** về máy:
-
-     ```bash
-     git clone https://github.com/tanphn/cs317_lab1.git
-     cd cs317_lab1
-
-### 2. **Cài đặt thư viện cần thiết**
-     ```bash
-     pip install -r requirements.txt
-  File requirements.txt bao gồm các thư viện chính như:
-  
-  - **torch**: Thư viện học sâu PyTorch.
-  - **torchvision**: Hỗ trợ xử lý hình ảnh với PyTorch.
-  - **optuna**: Tối ưu hóa hyperparameters.
-  - **clearml**: Quản lý pipeline và thí nghiệm.
-  - **neptune**: Log metric và mô hình.
-  - **dvc**: Quản lý dữ liệu.
-  - **scikit-learn**: Đánh giá mô hình.
-  - **mlflow, fastapi, uvicorn, prometheus-client, pytest**: Các công cụ bổ sung cho MLOps.
-
-### 3. **Cấu hình dvc**
-       dvc init
-
-### 4. **Chạy Pineline** 
-#### 4.1 **Chạy Pineline với DVC**
-Các pipeline huấn luyện và đánh giá có thể được thực thi thông qua DVC. Bạn có thể sử dụng DVC để chạy pipeline đã được cấu hình sẵn được lưu trong file dvc.yaml
-    ```bash
-    dvc repro
+  - `train.py`: 🧠 Huấn luyệnrepro
   Pipeline được định nghĩa trong dvc.yaml và điều phối bởi ClearML. Các bước chính bao gồm: preprocess, train, và evaluate:
   - **Preprocess**: Xử lý dữ liệu từ data/raw và lưu vào data/processed.
   - **Train**: Huấn luyện mô hình ResNet18 với 10 epoch, sử dụng Optuna để tối ưu lr và batch_size.
   - **Evaluate**: Đánh giá mô hình trên tập validation và lưu metric vào metrics/eval.json.\n
 #### 4.2 **Chạy Pineline với ClearML**
   Chạy pipeline bằng lệnh:
-     ```bash
      python clearml_pipeline.py
      
 ### 5. **Theo dõi kết quả**
