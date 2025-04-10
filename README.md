@@ -66,13 +66,13 @@ File requirements.txt bao gồm các thư viện chính như:
 - **dvc**: Quản lý dữ liệu.
 - **scikit-learn**: Đánh giá mô hình.
 - **mlflow, fastapi, uvicorn, prometheus-client, pytest**: Các công cụ bổ sung cho MLOps.
+
 3. **Cấu hình dvc**
-  ```bash
+   ```bash
    dvc init
-Theo dõi dữ liệu với:
-  ```bash
-   dvc add data/raw
 
-teh doi
-3. **Cấu hình dvc**
-
+4. **Chạy Pineline với DVC**
+Các pipeline huấn luyện và đánh giá có thể được thực thi thông qua DVC. Bạn có thể sử dụng DVC để chạy pipeline đã được cấu hình sẵn được lưu trong file dvc.yaml
+   ```bash
+   dvc repro
+File requirements.txt bao gồm các thư viện chính như:
