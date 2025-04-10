@@ -53,3 +53,16 @@ mlops_lab1/
    ```bash
    git clone https://github.com/tanphn/cs317_lab1.git
    cd cs317_lab1
+2. **Cài đặt thư viện cần thiết**
+   ```bash
+   pip install -r requirements.txt
+File requirements.txt bao gồm các thư viện chính như:
+
+torch: Thư viện học sâu PyTorch.
+torchvision: Hỗ trợ xử lý hình ảnh với PyTorch.
+optuna: Tối ưu hóa hyperparameters.
+clearml: Quản lý pipeline và thí nghiệm.
+neptune: Log metric và mô hình.
+dvc: Quản lý dữ liệu.
+scikit-learn: Đánh giá mô hình.
+mlflow, fastapi, uvicorn, prometheus-client, pytest: Các công cụ bổ sung cho MLOps.
