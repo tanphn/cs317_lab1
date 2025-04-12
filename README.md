@@ -50,6 +50,7 @@ File requirements.txt bao gồm các thư viện chính như:
 3. **Cấu hình dvc**
    ```bash
    dvc init
+  - Nếu không chạy được thì tải extension dvc ở trên visual studio.
 4. **Chạy Pineline**
 **Chạy Pineline với DVC**
 Các pipeline huấn luyện và đánh giá có thể được thực thi thông qua DVC. Bạn có thể sử dụng DVC để chạy pipeline đã được cấu hình sẵn được lưu trong file dvc.yaml
