@@ -51,24 +51,37 @@ File requirements.txt bao gồm các thư viện chính như:
    ```bash
    dvc init
   - Nếu không chạy được thì tải extension dvc ở trên visual studio.
-4. **Chạy Pineline**
-- **Chạy Pineline với DVC**
-Các pipeline huấn luyện và đánh giá có thể được thực thi thông qua DVC. Bạn có thể sử dụng DVC để chạy pipeline đã được cấu hình sẵn được lưu trong file dvc.yaml
-    ```bash
-    dvc respo
-Pipeline được định nghĩa trong dvc.yaml. Các bước chính bao gồm: preprocess, train, và evaluate:
-  - **Preprocess**: Xử lý dữ liệu từ data/raw và lưu vào data/processed.
-  - **Train**: Huấn luyện mô hình ResNet18 với 10 epoch, sử dụng Optuna để tối ưu lr và batch_size.
-  - **Evaluate**: Đánh giá mô hình trên tập validation và lưu metric vào metrics/eval.json.
-- **Chạy Pineline với ClearML**
-  Chạy pipeline bằng lệnh:
-        ```bash
-        python clearml_pipeline.py
-  Pipeline được điều phối trong dvc.yaml
-  - **Preprocess**: Xử lý dữ liệu từ data/raw và lưu vào data/processed.
-  - **Train**: Huấn luyện mô hình ResNet18 với 10 epoch, sử dụng Optuna để tối ưu lr và batch_size.
-  - **Evaluate**: Đánh giá mô hình trên tập validation và lưu metric vào metrics/eval.json.
-- ## **Theo dõi kết quả**
+## Chạy Pipeline
+
+### Chạy Pipeline với DVC
+
+Pipeline được định nghĩa trong file `dvc.yaml` và bao gồm 3 bước:
+
+- **Preprocess**: Xử lý dữ liệu từ `data/raw` và lưu vào `data/processed`.
+- **Train**: Huấn luyện mô hình ResNet18 trong 10 epoch, tối ưu `lr` và `batch_size` bằng Optuna.
+- **Evaluate**: Đánh giá mô hình và lưu kết quả vào `metrics/eval.json`.
+
+Chạy toàn bộ pipeline:
+
+```bash
+dvc repro
+```
+
+---
+
+### Chạy Pipeline với ClearML
+
+Bạn cũng có thể chạy pipeline thông qua **ClearML** bằng lệnh:
+
+```bash
+python src/clearml_pipeline.py
+```
+
+ClearML sẽ thực hiện toàn bộ pipeline theo đúng logic trong `dvc.yaml`, đồng thời log toàn bộ quá trình lên ClearML Dashboard.
+
+---
+
+## **Theo dõi kết quả**
 - **ClearML**:  
   Sau khi chạy pipeline, bạn sẽ thấy link ClearML results page trong log (ví dụ: `https://app.clear.ml/projects/...`).  
   Truy cập link để xem trạng thái pipeline, log, và artifact (như checkpoint mô hình, file metric).  
