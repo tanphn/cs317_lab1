@@ -1,4 +1,5 @@
 import torch
+import os 
 from torchvision import datasets, transforms, models
 from sklearn.metrics import classification_report
 import json
@@ -23,21 +24,23 @@ def evaluate():
     transform = transforms.Compose([
         transforms.Resize((128, 128)),
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # Thêm normalize
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # Normalize
     ])
-    val_ds = datasets.ImageFolder("data/processed/val", transform=transform)
-    val_loader = torch.utils.data.DataLoader(val_ds, batch_size=32)
+    
+    # Đổi từ val sang test
+    test_ds = datasets.ImageFolder("data/processed/test", transform=transform)
+    test_loader = torch.utils.data.DataLoader(test_ds, batch_size=32)
 
     # Tải mô hình
     model = models.resnet18()
-    model.fc = torch.nn.Linear(model.fc.in_features, len(val_ds.classes))
+    model.fc = torch.nn.Linear(model.fc.in_features, len(test_ds.classes))
     model.load_state_dict(torch.load("models/checkpoints/best_model.pt"))
-    model = model.eval().to(device)  # Chuyển mô hình sang thiết bị (CPU hoặc GPU)
+    model = model.eval().to(device)
 
     # Đánh giá mô hình
     y_true, y_pred = [], []
     with torch.no_grad():
-        for x, y in val_loader:
+        for x, y in test_loader:
             x = x.to(device)
             outputs = model(x)
             preds = outputs.argmax(dim=1).cpu()
@@ -53,7 +56,7 @@ def evaluate():
     run["eval/accuracy"] = report["accuracy"]
     run["eval/weighted_f1"] = report["weighted avg"]["f1-score"]
     for class_idx, metrics in report.items():
-        if class_idx.isdigit():  # Log metric cho từng lớp
+        if class_idx.isdigit():
             run[f"eval/class_{class_idx}/precision"] = metrics["precision"]
             run[f"eval/class_{class_idx}/recall"] = metrics["recall"]
             run[f"eval/class_{class_idx}/f1"] = metrics["f1-score"]
