@@ -52,7 +52,7 @@ File requirements.txt bao gồm các thư viện chính như:
    dvc init
   - Nếu không chạy được thì tải extension dvc ở trên visual studio.
 4. **Chạy Pineline**
-**Chạy Pineline với DVC**
+- **Chạy Pineline với DVC**
 Các pipeline huấn luyện và đánh giá có thể được thực thi thông qua DVC. Bạn có thể sử dụng DVC để chạy pipeline đã được cấu hình sẵn được lưu trong file dvc.yaml
     ```bash
     dvc respo
@@ -60,15 +60,15 @@ Pipeline được định nghĩa trong dvc.yaml. Các bước chính bao gồm: 
   - **Preprocess**: Xử lý dữ liệu từ data/raw và lưu vào data/processed.
   - **Train**: Huấn luyện mô hình ResNet18 với 10 epoch, sử dụng Optuna để tối ưu lr và batch_size.
   - **Evaluate**: Đánh giá mô hình trên tập validation và lưu metric vào metrics/eval.json.
-**Chạy Pineline với ClearML**
-Chạy pipeline bằng lệnh:
-      ```bash
-      python clearml_pipeline.py
-Pipeline được điều phối trong dvc.yaml
+- **Chạy Pineline với ClearML**
+  Chạy pipeline bằng lệnh:
+        ```bash
+        python clearml_pipeline.py
+  Pipeline được điều phối trong dvc.yaml
   - **Preprocess**: Xử lý dữ liệu từ data/raw và lưu vào data/processed.
   - **Train**: Huấn luyện mô hình ResNet18 với 10 epoch, sử dụng Optuna để tối ưu lr và batch_size.
   - **Evaluate**: Đánh giá mô hình trên tập validation và lưu metric vào metrics/eval.json.
-## **Theo dõi kết quả**
+- ## **Theo dõi kết quả**
 - **ClearML**:  
   Sau khi chạy pipeline, bạn sẽ thấy link ClearML results page trong log (ví dụ: `https://app.clear.ml/projects/...`).  
   Truy cập link để xem trạng thái pipeline, log, và artifact (như checkpoint mô hình, file metric).  
@@ -78,3 +78,5 @@ Pipeline được điều phối trong dvc.yaml
   Dữ liệu được quản lý trong thư mục `data/processed`. Dùng lệnh sau để kéo dữ liệu mới nhất nếu cần:  
   ```bash
   dvc pull
+## **Video chạy pineline**
+  Video được lưu ở thư mục: **https://drive.google.com/drive/folders/1HiKB9ii385YYsoV-60tHD3TeShuuaiwW?usp=drive_link**
