@@ -1,5 +1,6 @@
 import os
 import torch
+import os 
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms, models
@@ -102,7 +103,7 @@ def train_model(trial):
         print(f"Epoch {epoch+1}/10, Val Loss: {avg_val_loss}, Val Accuracy: {val_acc}")
         run["val/loss"].log(avg_val_loss)  # Log val loss
         run["val/accuracy"].log(val_acc)  # Log val accuracy
-
+    
     # Lưu mô hình
     checkpoint_dir = "models/checkpoints"
     os.makedirs(checkpoint_dir, exist_ok=True)
